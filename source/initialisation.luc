@@ -17,9 +17,11 @@ module initialisation (
 
   always {
     out = 0;
+                //how do i loop across arrays?
     if (shipsXY[0]>= 0 && shipsXY[0] <= 3 && shipsXY[1]>=0 && shipsXY[1] <= 4){
        if (set == 1){
           for (i=0; i < 4; i++){                                                     //4 refers to number of ships we can input
+            myShipsPos[i] = shipsXY;                                                 //myShipsArray sent to mojo_top to turn on LEDs
 
         }
       
