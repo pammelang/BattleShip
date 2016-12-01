@@ -1,10 +1,46 @@
 module initialisation (
     input clk,  // clock
     input rst,  // reset
-    output out
+    output out,
+    input shipsXY[2],                 //ship LED x,y position 
+    input shipsPos[shipsXY],          //each ship of size 2,3,4
+    input shipsArray[shipsPos[2]],     //array of all ships on board
+    input set                         //button click when they set down each ship 
+                  
   ) {
+  
+  var i;
+  var j;
+  sig myShipsXY[2];                   //convert each button to
+  sig myShipsPos[myShipsXY];           
+  sig myShipsArray[myShipsPos];
 
   always {
     out = 0;
+    if (shipsXY[0]>= 0 && shipsXY[0] <= 3 && shipsXY[1]>=0 && shipsXY[1] <= 4){
+       if (set == 1){
+          for (i=0; i < 4; i++){                                                     //4 refers to number of ships we can input
+
+        }
+      
+
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   }
+  
+  
+  
+  
+  
 }
