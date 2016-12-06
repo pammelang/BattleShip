@@ -15,10 +15,30 @@ module mojo_top (
     output io_seg [8],      // 7-segment LEDs on IO Shield
     output io_sel [4],      // Digit select on IO Shield
     input io_button [5],    // 5 buttons on IO Shield
-    input io_dip [3][8]     // DIP switches on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield
+    
+    input dpad_up,
+    input dpad_down,
+    input dpad_left,
+    input dpad_right,
+    input set,
+    input mdg_in[6], //[5:0]
+    input mdr_in[6], //[11:6]
+    input mu_in[6], //[17:12]
+    input yd_in[6], //[23:18]
+    input yu_in[6], //[29:24]
+    
+    output mdg_out[6], //[5:0] - need to assign to io-ports but HOW?
+    output mdr_out[6], //[11:6]
+    output mu_out[6] //[17:12]
+    //input yd_array[23:18],
+    //input yu_array[29:23]
   ) {
   
   sig rst;                  // reset signal
+  var i;                    // to iterate the input/output lists
+  //var yd;
+  //var yu;
   
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
@@ -38,5 +58,42 @@ module mojo_top (
     io_led = 3x{{8h00}};    // turn LEDs off
     io_seg = 8hff;          // turn segments off
     io_sel = 4hf;           // select no digits
+    
+    //initialise the pointer to start at central point of matrix
+    
+    if (set != 1){
+      if (dpad_up == 1){
+        for (i=0;i<6;i++){
+          if (mdg_in[i] == 1){
+            mdg_out[i+1] = 1;
+          }
+        }
+      }else if (dpad_down == 1){
+         for (i=0;i<6;i++){
+          if (mdg_in[i] == 1){
+            mdg_out[i-1] = 1;
+          }
+        }
+      }else if (dpad_left == 1){
+        for (i=0;i<6;i++){
+          if (mu_in[i] == 1){
+            mu_out[i-1] = 1;
+          }
+        }
+  
+      } else if (dpad_right == 1){
+          for (i=0;i<6;i++){
+          if (mu_in[i] == 1){
+            mu_out[i+1] = 1;
+          }
+        }
+      }
+    }
+
+    
+    
+    
+    
+    
   }
 }

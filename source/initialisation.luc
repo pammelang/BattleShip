@@ -1,48 +1,40 @@
 module initialisation (
+
+    //input 3-level array of ship positions
+    //
+    
     input clk,  // clock
     input rst,  // reset
     output out,
-    input shipsXY[2],                 //ship LED x,y position 
-    input shipsPos[shipsXY],          //each ship of size 2,3,4
-    input shipsArray[shipsPos[2]],     //array of all ships on board
-    input set                         //button click when they set down each ship 
+    input shipsXY[2],                  //ship LED x,y position 
+    input shipsPos[shipsXY],           //each ship of size 2,3,4
+    input shipsArray[shipsPos],         //array of all ships on board
+    input mdg_in[6], //[5:0]
+    input mdr_in[6], //[11:6]
+    input mu_in[6], //[17:12]
+    input yd_in[6], //[23:18]
+    input yu_in[6], //[29:24]    
                   
   ) {
-  
-  var i;
-  var j;
+  var allships;
+  var oneship;
+  var oneshippart;
   sig myShipsXY[2];                   //convert each button to
   sig myShipsPos[myShipsXY];           
   sig myShipsArray[myShipsPos];
 
   always {
     out = 0;
-                //how do i loop across arrays?
-    if (shipsXY[0]>= 0 && shipsXY[0] <= 3 && shipsXY[1]>=0 && shipsXY[1] <= 4){
-       if (set == 1){
-          for (i=0; i < 4; i++){                                                     //4 refers to number of ships we can input
-            myShipsPos[i] = shipsXY;                                                 //myShipsArray sent to mojo_top to turn on LEDs
-
+    
+      for (allships = 0; allships < 3 ; allships++){              //3 boats in total
+        for (oneship = 0; oneship < 4 ; allships++){              //4 squares per boat
+          for (oneshippart = 0; oneshippart < 2 ; oneshippart++){ //x and y value
+            myShipsXY[oneshippart] = shipsXY[oneshippart];
+          }
+          myShipsPos[oneship] = shipsPos[oneship];
         }
-      
-
-        
-        
+        myShipsArray[allships] = shipsArray[allships];
+      }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
   }
-  
-  
-  
-  
-  
-}
+ 

@@ -1,0 +1,30 @@
+module verify (
+    input clk,  // clock
+    input rst,  // reset
+    output out,
+    
+    input a_mdg_in[6], //[5:0]
+    input a_mdr_in[6], //[11:6]
+    input a_mu_in[6], //[17:12]
+    input a_yd_in[6], //[23:18]
+    input a_yu_in[6], //[29:24]    
+    
+    input b_mdg_in[6], //[35:30]
+    input b_mdr_in[6], //[41:36]
+    input b_mu_in[6], //[47:42]
+    input b_yd_in[6], //[53:48]
+    input b_yu_in[6], //[59:54]    
+  ) {
+
+  always {
+    out = 0;
+    
+    
+    
+    
+    
+    
+    
+    
+  }
+}
