@@ -3,8 +3,6 @@
   <files>
     <src>initialisation.luc</src>
     <src>shifter.luc</src>
-    <src>cmp.luc</src>
-    <src>adder.luc</src>
     <src>verify.luc</src>
     <src top="true">mojo_top.luc</src>
     <ucf lib="true">io_shield.ucf</ucf>

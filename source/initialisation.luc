@@ -3,25 +3,44 @@ module initialisation (
     //input 3-level array of ship positions
     //
     
-    input clk,  // clock
-    input rst,  // reset
+    //input clk,  // clock
+    //input rst,  // reset
     output out,
-    input shipsXY[2],                  //ship LED x,y position 
-    input shipsPos[shipsXY],           //each ship of size 2,3,4
-    input shipsArray[shipsPos],         //array of all ships on board
-    input mdg_in[6], //[5:0]
-    input mdr_in[6], //[11:6]
-    input mu_in[6], //[17:12]
-    input yd_in[6], //[23:18]
-    input yu_in[6], //[29:24]    
+    //input shipsXY[2],                  //ship LED x,y position 
+    //input shipsPos[shipsXY],           //each ship of size 2,3,4
+    //input shipsArray[shipsPos],         //array of all ships on board
+    
+    inout a_mdg[6], //[5:0]
+    inout a_mdr[6], //[11:6]
+    inout a_mu[6], //[17:12]
+    inout a_yd[6], //[23:18]
+    inout a_yu[6], //[29:24]    
+    
+    inout b_mdg[6], //[35:30]
+    inout b_mdr[6], //[41:36]
+    inout b_mu[6], //[47:42]
+    inout b_yd[6], //[53:48]
+    inout b_yu[6], //[59:54]   
                   
   ) {
   var allships;
   var oneship;
   var oneshippart;
-  sig myShipsXY[2];                   //convert each button to
-  sig myShipsPos[myShipsXY];           
-  sig myShipsArray[myShipsPos];
+  //sig myShipsXY[2];                   //convert each button to
+  //sig myShipsPos[myShipsXY];           
+  //sig myShipsArray[myShipsPos];
+  
+    sig a_mdg[6], //[5:0]
+    sig a_mdr[6], //[11:6]
+    sig a_mu[6], //[17:12]
+    sig a_yd[6], //[23:18]
+    sig a_yu[6], //[29:24]    
+    
+    sig b_mdg[6], //[35:30]
+    sig b_mdr[6], //[41:36]
+    sig b_mu[6], //[47:42]
+    sig b_yd[6], //[53:48]
+    sig b_yu[6], //[59:54] 
 
   always {
     out = 0;

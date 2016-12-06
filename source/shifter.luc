@@ -1,24 +1,26 @@
 module shifter8 (
-  input a[8] ,
-  input b[3],
+  input i[5] ,
+  input j[7],
   input alufn[6],
-  output shift[8]
+  output shift_i[5],
+  output shift_j[7]
   )
   {
+  
+  mojo_top a_mu;
+  
   always {
-    case(alufn[2:0]) {
-    3b000: shift = a << b[2:0];
-    
-    3b001: shift = a >> b[2:0];
-    
-    3b011: shift = $signed(a) >>> b[2:0];
-    
-    3b110: shift = a << 1; shift[0] = a[7]; //rotate left
-    
-    3b111: shift = a >> 1; shift[7] = a[0]; //rotate right
-    
-    default: shift = a;
-
+  case(alufn[3:0]){
+      4b0001: shift_i = i >> 1; //right
+      
+      4b0010: shift_j = j >> 1; //up
+        
+      4b0100: shift_i = i << 1; //left
+        
+      4b1000: shift_j = j << 1; //down
+      
+      default: shift_i = i;
+               shift_j = j;
     
     }
   }
