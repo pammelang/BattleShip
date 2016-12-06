@@ -7,17 +7,16 @@ module shifter8 (
   )
   {
   
-  mojo_top a_mu;
-  
+   
   always {
   case(alufn[3:0]){
-      4b0001: shift_i = i >> 1; //right
+      4b0001: shift_i = i >> 2; //right
       
-      4b0010: shift_j = j >> 1; //up
+      4b0010: shift_j = j >> 2; //up
         
-      4b0100: shift_i = i << 1; //left
+      4b0100: shift_i = i << 2; //left
         
-      4b1000: shift_j = j << 1; //down
+      4b1000: shift_j = j << 2; //down
       
       default: shift_i = i;
                shift_j = j;

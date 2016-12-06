@@ -73,6 +73,7 @@ module mojo_top (
     io_sel = 4hf;           // select no digits
     
     //initialise the pointer to start at central point of matrix
+    a_mdg.write[0] = 0;
     
     if (set != 1){
       if (dpad_up == 1){

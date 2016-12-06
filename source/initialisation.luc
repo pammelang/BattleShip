@@ -1,59 +1,38 @@
 module initialisation (
-
-    //input 3-level array of ship positions
-    //
-    
     //input clk,  // clock
     //input rst,  // reset
     output out,
-    //input shipsXY[2],                  //ship LED x,y position 
-    //input shipsPos[shipsXY],           //each ship of size 2,3,4
-    //input shipsArray[shipsPos],         //array of all ships on board
     
-    inout a_mdg[6], //[5:0]
-    inout a_mdr[6], //[11:6]
-    inout a_mu[6], //[17:12]
-    inout a_yd[6], //[23:18]
-    inout a_yu[6], //[29:24]    
+    //inout a_mdg[6] //[5:0]
+    //inout a_mdr[6], //[11:6]
+    //inout a_mu[6], //[17:12]
+    //inout a_yd[6], //[23:18]
+    //inout a_yu[6], //[29:24]    
     
-    inout b_mdg[6], //[35:30]
-    inout b_mdr[6], //[41:36]
-    inout b_mu[6], //[47:42]
-    inout b_yd[6], //[53:48]
-    inout b_yu[6], //[59:54]   
+    //inout b_mdg[6], //[35:30]
+    //inout b_mdr[6], //[41:36]
+    //inout b_mu[6], //[47:42]
+    //inout b_yd[6], //[53:48]
+    //inout b_yu[6], //[59:54]   
                   
   ) {
-  var allships;
-  var oneship;
-  var oneshippart;
-  //sig myShipsXY[2];                   //convert each button to
-  //sig myShipsPos[myShipsXY];           
-  //sig myShipsArray[myShipsPos];
   
-    sig a_mdg[6], //[5:0]
-    sig a_mdr[6], //[11:6]
-    sig a_mu[6], //[17:12]
-    sig a_yd[6], //[23:18]
-    sig a_yu[6], //[29:24]    
+    sig a_mdg[6]; //[5:0]
+    sig a_mdr[6]; //[11:6]
+    sig a_mu[6]; //[17:12]
+    sig a_yd[6]; //[23:18]
+    sig a_yu[6]; //[29:24]    
     
-    sig b_mdg[6], //[35:30]
-    sig b_mdr[6], //[41:36]
-    sig b_mu[6], //[47:42]
-    sig b_yd[6], //[53:48]
-    sig b_yu[6], //[59:54] 
+    sig b_mdg[6]; //[35:30]
+    sig b_mdr[6]; //[41:36]
+    sig b_mu[6]; //[47:42]
+    sig b_yd[6]; //[53:48]
+    sig b_yu[6]; //[59:54] 
 
   always {
     out = 0;
-    
-      for (allships = 0; allships < 3 ; allships++){              //3 boats in total
-        for (oneship = 0; oneship < 4 ; allships++){              //4 squares per boat
-          for (oneshippart = 0; oneshippart < 2 ; oneshippart++){ //x and y value
-            myShipsXY[oneshippart] = shipsXY[oneshippart];
-          }
-          myShipsPos[oneship] = shipsPos[oneship];
-        }
-        myShipsArray[allships] = shipsArray[allships];
-      }
+    a_mdg.write[3] = 0;
+   
     }
   }
  

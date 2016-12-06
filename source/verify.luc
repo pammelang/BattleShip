@@ -1,30 +1,49 @@
 module verify (
-    input clk,  // clock
-    input rst,  // reset
+    //input clk,  // clock
+    //input rst,  // reset
     output out,
     
-    input a_mdg_in[6], //[5:0]
-    input a_mdr_in[6], //[11:6]
-    input a_mu_in[6], //[17:12]
-    input a_yd_in[6], //[23:18]
-    input a_yu_in[6], //[29:24]    
+    inout a_mdg[6], //[5:0]
+    inout a_mdr[6], //[11:6]
+    inout a_mu[6], //[17:12]
+    inout a_yd[6], //[23:18]
+    inout a_yu[6], //[29:24]    
     
-    input b_mdg_in[6], //[35:30]
-    input b_mdr_in[6], //[41:36]
-    input b_mu_in[6], //[47:42]
-    input b_yd_in[6], //[53:48]
-    input b_yu_in[6], //[59:54]    
+    inout b_mdg[6], //[35:30]
+    inout b_mdr[6], //[41:36]
+    inout b_mu[6], //[47:42]
+    inout b_yd[6], //[53:48]
+    inout b_yu[6], //[59:54]    
   ) {
+    
+  var i;            //to iterate the arrays (down)
+  var j;            //to iterate the arrays (up)
 
   always {
     out = 0;
-    
-    
-    
-    
-    
-    
-    
-    
+   
+    if (a_yd.read[i] == b_mdg.read[i] && a_yu.read[j] != b_mu.read[i]){ //hit! - b perspective
+        b_mdr.write[i] = 1;
+        b_mu.write[j] = 0;
+        a_yd.write[i] = 1; //need to set it to be blinking
+        a_yu.write[j] = 0; //need to set it to be blinking
+    }
+    else if (b_yd.read[i] == a_mdg.read[i] && b_yu.read[j] != a_mu.read[i]){ //hit! - a perspective
+        a_mdr.write[i] = 1;
+        a_mu.write[j] = 0;
+        b_yd.write[i] = 1; //need to set it to be blinking
+        b_yu.write[j] = 0; //need to set it to be blinking
+    }else if (a_yd.read[i] != b_mdg.read[i] || a_yu.read[j] == b_mu.read[i]){ //miss! - b perspective
+        b_mdr.write[i] = 1;
+        b_mu.write[j] = 0;
+        a_yd.write[i] = 1;
+        a_yu.write[j] = 0;
+    }else if (b_yd.read[i] != a_mdg.read[i] || b_yu.read[j] == a_mu.read[i]){ //miss! - a perspective
+        a_mdr.write[i] = 1;
+        a_mu.write[j] = 0;
+        b_yd.write[i] = 1;
+        b_yu.write[j] = 0;
+    }
+
   }
 }
